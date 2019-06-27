@@ -11143,7 +11143,7 @@ header .header_right .main_menu a {
   color: black;
 }
 
-#homeMain {
+.container {
   padding: 30px 10px;
 }
 

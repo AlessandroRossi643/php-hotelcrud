@@ -18,7 +18,7 @@ include 'layout/_head.php';
 include 'layout/_header.php';
 ?>
 
-<div id="homeMain" class="container">
+<div class="container">
   <h1>TUTTE LE STANZE DELL'HOTEL</h1>
   <table class="table">
     <thead>
@@ -46,8 +46,10 @@ include 'layout/_header.php';
               <td class="text-center">
 
                 <div class="btn-group" role="group" aria-label="Basic example">
-                  <a href="#" type="button" class="btn btn-primary"> Visualizza </a>
-                  <a href="#" type="button" class="btn btn-success"> Modifica </a>
+                  <a href="show.php?id=<?php echo $row['id']?>"
+                    type="button" class="btn btn-primary"> Visualizza </a>
+                  <a href="edit.php?id=<?php echo $row['id'] ?>"
+                    type="button" class="btn btn-success"> Modifica </a>
                   <a href="#" type="button" class="btn btn-danger">Cancella</a>
 
                 </div>
@@ -56,10 +58,10 @@ include 'layout/_header.php';
           }
         }
         elseif ($result) {
-          echo "0 results";
+          ?> <div class="alert alert-danger py-2" role="alert"><?php echo "0 Results"?></div> <?php
         }
         else{
-          echo "query error";
+          ?> <div class="alert alert-danger py-2" role="alert"><?php echo "Query error"?></div> <?php
         }
         ?>
     </tbody>
