@@ -1,35 +1,57 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Db_Hotel</title>
-    <link rel="stylesheet" href="public/css/app.css">
-  </head>
-  <body>
-    <div class="container">
-      <?php include 'sqlconn.php' ?>
+<?php
+include 'db_config.php';
+include 'functions.php';
 
-      <?php
-      $sql = "SELECT * FROM stanze";
-      $result = $connessione->query($sql);
-      if ($result && $result->num_rows > 0) {
-      ?>
+$connessione=connessione_db($servername,$username,$password,$dbname);
 
-        <div class="table-responsive">
-          <table class="table">
+if ($connessione && $connessione->connect_error) {
+  echo ("CONNESSIONE FALLITA:" . $connessione->connect_error);
+  exit();
+}
+
+$sql = "SELECT * FROM stanze";
+$result = $connessione->query($sql);
+?>
+
+<?php
+include 'layout/_head.php';
+include 'layout/_header.php';
+?>
+
+<div id="homeMain" class="container">
+  <h1>TUTTE LE STANZE DELL'HOTEL</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Room Number</th>
+        <th class="text-center">Floor</th>
+        <th class="text-center">Beds</th>
+        <th class="text-center">Created At</th>
+        <th class="text-center">Updated At</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+  <tbody>
+<?php
+  if ($result && $result->num_rows > 0) {
+    while ($row=$result->fetch_assoc()) { ?>
             <tr>
-              <td>ID</td>
-              <td>Numero Stanze</td>
-              <td>Piano</td>
-              <td>Numero letti</td>
-            </tr>
+              <td class="text-center"><?php echo $row['id'];?></td>
+              <td class="text-center"><?php echo $row['room_number'];?></td>
+              <td class="text-center"><?php echo $row['floor'];?></td>
+              <td class="text-center"><?php echo $row['beds'];?></td>
+              <td class="text-center"><?php echo $row['created_at'];?></td>
+              <td class="text-center"><?php echo $row['updated_at'];?></td>
+              <td class="text-center">
 
-        <?php while ($row=$result->fetch_assoc()) { ?>
-            <tr>
-              <td><?php echo $row['id'];?></td>
-              <td><?php echo $row['room_number'];?></td>
-              <td><?php echo $row['floor'];?></td>
-              <td><?php echo $row['beds'];?></td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <a href="#" type="button" class="btn btn-primary"> Visualizza </a>
+                  <a href="#" type="button" class="btn btn-success"> Modifica </a>
+                  <a href="#" type="button" class="btn btn-danger">Cancella</a>
+
+                </div>
+              </td>
             </tr> <?php
           }
         }
@@ -39,10 +61,12 @@
         else{
           echo "query error";
         }
-        $connessione-> close();
         ?>
-          </table>
-        </div>
-    </div>
-  </body>
+    </tbody>
+  </table>
+</div>
+</body>
 </html>
+<?php
+$connessione-> close();
+?>
