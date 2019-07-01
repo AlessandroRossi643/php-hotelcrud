@@ -22,7 +22,7 @@ include 'layout/_header.php';
 
 <div class="container">
   <div class="jumbotron">
-    <h1 class="display-4">Stanza numero: <?php echo $idStanza; ?></h1>
+    <h1 class="display-4">Stanza ID: <?php echo $idStanza; ?></h1>
     <hr class="my-4">
     <?php if ($result && $result->num_rows > 0) {
       $row=$result-> fetch_assoc() ?>
