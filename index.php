@@ -50,7 +50,7 @@ include 'layout/_header.php';
                     type="button" class="btn btn-primary"> Visualizza </a>
                   <a href="edit.php?id=<?php echo $row['id'] ?>"
                     type="button" class="btn btn-success"> Modifica </a>
-                  <a href="#" type="button" class="btn btn-danger">Cancella</a>
+                  <a href="delete.php?id=<?php echo $row['id'] ?>" type="button" class="btn btn-danger">Cancella</a>
 
                 </div>
               </td>

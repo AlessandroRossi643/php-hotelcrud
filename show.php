@@ -40,7 +40,7 @@ include 'layout/_header.php';
       ?> <div class="alert alert-danger py-2" role="alert"><?php echo "Query error"?></div> <?php
     }?>
 
-    <a class="btn btn-primary btn-lg" href="index.php" role="button">Visualizza tutte le stanze</a>
+    <a class="btn btn-primary btn-lg btnback" href="index.php" role="button">Visualizza tutte le stanze</a>
   </div>
 </div>
 
